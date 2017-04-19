@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    spark = SparkSession.builder.master("local[*]").appName("PythonPi").getOrCreate()
+    spark = SparkSession.builder.appName("PythonPi").getOrCreate()
 
     #TODO: Need to get this value from querystring 'partitions'
     partitions = 2
@@ -28,7 +28,7 @@ def hello():
     print("Pi is roughly %f" % (4.0 * count / n))
 
     spark.stop()
-    return "SparkJobSubmitted"
+    return "Pi is roughly %f" % (4.0 * count / n)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
