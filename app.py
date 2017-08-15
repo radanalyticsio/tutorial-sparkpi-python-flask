@@ -13,8 +13,7 @@ app = Flask(__name__)
 def index():
     spark = SparkSession.builder.appName("PythonPi").getOrCreate()
 
-    # TODO: Need to get this value from querystring 'partitions'
-    partitions = 2
+    partitions = int(request.args.get('partitions', 2))
     n = 100000 * partitions
 
     def f(_):
