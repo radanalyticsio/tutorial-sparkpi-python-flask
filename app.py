@@ -12,6 +12,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    return "Python Flask SparkPi server running. Add the 'sparkpi' route to this URL to invoke the app."
+
+
+@app.route("/sparkpi")
+def sparkpi():
     spark = SparkSession.builder.appName("PythonPi").getOrCreate()
 
     partitions = int(request.args.get('partitions', 2))
