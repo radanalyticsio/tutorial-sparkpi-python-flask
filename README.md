@@ -1,5 +1,5 @@
 # SparkPi
-A python implementation of SparkPi using Flask as a rest interface
+A python implementation of SparkPi using Flask as an HTTP interface
 
 This application is an example tutorial for the
 [radanalytics.io](https://radanalytics.io) community. It is intended to be
