@@ -28,7 +28,7 @@ def sparkpi():
         return 1 if x ** 2 + y ** 2 <= 1 else 0
 
     count = spark.sparkContext.parallelize(
-        range(1, n + 1), partitions).map(f).reduce(add)
+        xrange(1, n + 1), partitions).map(f).reduce(add)
     response = "Pi is roughly {}".format(4.0 * count / n)
 
     spark.stop()
