@@ -23,8 +23,8 @@ def sparkpi():
     n = 100000 * partitions
 
     def f(_):
-        x = random() * 2 - 1
-        y = random() * 2 - 1
+        x = random()
+        y = random()
         return 1 if x ** 2 + y ** 2 <= 1 else 0
 
     count = spark.sparkContext.parallelize(
