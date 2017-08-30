@@ -19,8 +19,8 @@ def index():
 def sparkpi():
     spark = SparkSession.builder.appName("PythonPi").getOrCreate()
 
-    partitions = int(request.args.get('partitions', 2))
-    n = 100000 * partitions
+    scale = int(request.args.get('scale', 2))
+    n = 100000 * scale
 
     def f(_):
         x = random()
@@ -28,7 +28,7 @@ def sparkpi():
         return 1 if x ** 2 + y ** 2 <= 1 else 0
 
     count = spark.sparkContext.parallelize(
-        xrange(1, n + 1), partitions).map(f).reduce(add)
+        xrange(1, n + 1), scale).map(f).reduce(add)
     response = "Pi is roughly {}".format(4.0 * count / n)
 
     spark.stop()
