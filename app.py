@@ -10,16 +10,8 @@ from pyspark.sql import SparkSession
 app = Flask(__name__)
 
 
-@app.route("/")
-def index():
-    return "Python Flask SparkPi server running. Add the 'sparkpi' route to this URL to invoke the app."
-
-
-@app.route("/sparkpi")
-def sparkpi():
+def produce_pi(scale):
     spark = SparkSession.builder.appName("PythonPi").getOrCreate()
-
-    scale = int(request.args.get('scale', 2))
     n = 100000 * scale
 
     def f(_):
@@ -29,9 +21,21 @@ def sparkpi():
 
     count = spark.sparkContext.parallelize(
         xrange(1, n + 1), scale).map(f).reduce(add)
-    response = "Pi is roughly {}".format(4.0 * count / n)
-
     spark.stop()
+    pi = 4.0 * count / n
+    return pi
+
+
+@app.route("/")
+def index():
+    return "Python Flask SparkPi server running. Add the 'sparkpi' route to this URL to invoke the app."
+
+
+@app.route("/sparkpi")
+def sparkpi():
+    scale = int(request.args.get('scale', 2))
+    pi = produce_pi(scale)
+    response = "Pi is roughly {}".format(pi)
 
     return response
 
