@@ -17,7 +17,7 @@ You should have access to an OpenShift cluster and be logged in with the
 
 1. Launch sparkpi
    ```bash
-   oc new-app --template oshinko-pyspark-build-dc  \
+   oc new-app --template oshinko-python-build-dc  \
        -p APPLICATION_NAME=sparkpi \
        -p GIT_URI=https://github.com/radanalyticsio/tutorial-sparkpi-python-flask.git
    ```
