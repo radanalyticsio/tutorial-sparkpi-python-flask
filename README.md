@@ -19,7 +19,7 @@ You should have access to an OpenShift cluster and be logged in with the
    ```bash
    oc new-app --template oshinko-python-build-dc  \
        -p APPLICATION_NAME=sparkpi \
-       -p GIT_URI=https://github.com/radanalyticsio/tutorial-sparkpi-python-flask.git
+       -p GIT_URI=https://github.com/radanalyticsio/tutorial-sparkpi-python-flask
    ```
 
 1. Expose an external route
