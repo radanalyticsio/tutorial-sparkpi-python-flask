@@ -19,7 +19,7 @@ def produce_pi(scale):
         return 1 if x ** 2 + y ** 2 <= 1 else 0
 
     count = spark.sparkContext.parallelize(
-        xrange(1, n + 1), scale).map(f).reduce(lambda x, y: x + y)
+        range(1, n + 1), scale).map(f).reduce(lambda x, y: x + y)
     spark.stop()
     pi = 4.0 * count / n
     return pi
